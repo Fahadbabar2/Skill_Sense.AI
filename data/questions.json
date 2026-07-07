@@ -1,0 +1,126 @@
+[
+  {
+    "id": "e1",
+    "difficulty": "easy",
+    "category": "data_structures",
+    "type": "short_answer",
+    "question": "What is a Python dictionary? Give a one-line definition.",
+    "keywords": ["key", "value", "pair", "mapping"]
+  },
+  {
+    "id": "e2",
+    "difficulty": "easy",
+    "category": "basics",
+    "type": "mcq",
+    "question": "Which keyword is used to define a function in Python?",
+    "options": ["func", "def", "function", "lambda"],
+    "answer": "def"
+  },
+  {
+    "id": "e3",
+    "difficulty": "easy",
+    "category": "data_structures",
+    "type": "mcq",
+    "question": "Which of these is mutable in Python?",
+    "options": ["tuple", "str", "list", "int"],
+    "answer": "list"
+  },
+  {
+    "id": "e4",
+    "difficulty": "easy",
+    "category": "basics",
+    "type": "short_answer",
+    "question": "What does the 'len()' function do?",
+    "keywords": ["length", "number", "items", "size"]
+  },
+  {
+    "id": "e5",
+    "difficulty": "easy",
+    "category": "control_flow",
+    "type": "mcq",
+    "question": "What does 'break' do inside a loop?",
+    "options": ["Skips one iteration", "Exits the loop entirely", "Restarts the loop", "Pauses the loop"],
+    "answer": "Exits the loop entirely"
+  },
+  {
+    "id": "m1",
+    "difficulty": "medium",
+    "category": "memory",
+    "type": "short_answer",
+    "question": "What is the difference between a shallow copy and a deep copy?",
+    "keywords": ["reference", "nested", "independent", "recursively", "copy"]
+  },
+  {
+    "id": "m2",
+    "difficulty": "medium",
+    "category": "oop",
+    "type": "short_answer",
+    "question": "Explain what a decorator is in Python.",
+    "keywords": ["function", "wraps", "modifies", "behavior", "wrapper"]
+  },
+  {
+    "id": "m3",
+    "difficulty": "medium",
+    "category": "data_structures",
+    "type": "mcq",
+    "question": "What is the time complexity of dictionary lookup in the average case?",
+    "options": ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+    "answer": "O(1)"
+  },
+  {
+    "id": "m4",
+    "difficulty": "medium",
+    "category": "functions",
+    "type": "short_answer",
+    "question": "What is the difference between *args and **kwargs?",
+    "keywords": ["positional", "keyword", "arguments", "arbitrary", "tuple", "dict"]
+  },
+  {
+    "id": "m5",
+    "difficulty": "medium",
+    "category": "concurrency",
+    "type": "short_answer",
+    "question": "What is the Global Interpreter Lock (GIL)?",
+    "keywords": ["thread", "lock", "one", "bytecode", "concurrency"]
+  },
+  {
+    "id": "h1",
+    "difficulty": "hard",
+    "category": "generators",
+    "type": "short_answer",
+    "question": "Explain how Python generators work and why they save memory.",
+    "keywords": ["yield", "lazy", "iterator", "state", "memory"]
+  },
+  {
+    "id": "h2",
+    "difficulty": "hard",
+    "category": "algorithms",
+    "type": "code",
+    "question": "Write a function to detect a cycle in a singly linked list.",
+    "keywords": ["slow", "fast", "pointer", "floyd", "cycle"]
+  },
+  {
+    "id": "h3",
+    "difficulty": "hard",
+    "category": "optimization",
+    "type": "short_answer",
+    "question": "How would you optimize a function that repeatedly recomputes the same expensive result?",
+    "keywords": ["cache", "memoiz", "lru_cache", "store", "reuse"]
+  },
+  {
+    "id": "h4",
+    "difficulty": "hard",
+    "category": "algorithms",
+    "type": "code",
+    "question": "Write a function that returns the k most frequent elements in a list, better than O(n log n) if possible.",
+    "keywords": ["heap", "counter", "bucket", "frequency"]
+  },
+  {
+    "id": "h5",
+    "difficulty": "hard",
+    "category": "concurrency",
+    "type": "short_answer",
+    "question": "What's the difference between multithreading and multiprocessing in Python, and when would you use each?",
+    "keywords": ["cpu", "io", "process", "thread", "bound", "gil"]
+  }
+]

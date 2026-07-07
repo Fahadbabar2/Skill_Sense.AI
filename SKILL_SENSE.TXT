@@ -1,0 +1,114 @@
+SkillSense AI — Project Overview
+==================================
+
+THE PROBLEM WE'RE SOLVING
+--------------------------
+Hiring managers can't fully trust resumes — people exaggerate experience,
+and traditional tests are static and easy to game. This project builds an
+AI system that judges someone by how they actually perform, not what they
+claim, and adapts its questions in real time to zero in on their true
+skill level.
+
+WHAT WE ACTUALLY BUILT
+------------------------
+A working end-to-end web app with three moving parts:
+
+1. An adaptive quiz — starts at medium difficulty, gets harder if you're
+   doing well, gets easier if you're struggling (this is called
+   Computerized Adaptive Testing, a real established testing technique).
+2. A trained machine learning model — takes your performance data and
+   predicts your skill level (Beginner / Intermediate / Advanced / Expert).
+3. A report — shows your resume claim next to the AI's estimate, plus
+   your strengths and weaknesses by category.
+
+HOW IT WORKS, STEP BY STEP
+----------------------------
+1. You enter your claimed experience (years, skills list, resume label).
+2. The app asks you a Python question — starts at medium difficulty.
+3. You answer, and the system checks it (exact match for multiple choice,
+   keyword-concept matching for written answers).
+4. Based on correct/wrong, the next question adjusts: correct -> harder,
+   wrong -> easier.
+5. This repeats for 8 questions total, recording things like: time taken,
+   correct/not, difficulty, hints used.
+6. Once done, all that performance data gets converted into a set of
+   numbers (a "feature vector").
+7. That feature vector gets fed into the trained ML model, which outputs
+   a predicted skill level plus a confidence percentage.
+8. You get a final report: resume claim vs. AI estimate, category-by-
+   category breakdown, strengths/weaknesses.
+
+TOOLS & TECH STACK
+--------------------
+- Backend / API   : FastAPI       — serves the quiz logic and predictions
+- Frontend / UI   : Streamlit     — fast interactive web app, no React needed
+- ML model        : XGBoost       — industry-standard model for this kind
+                                     of structured/tabular prediction
+- Data handling   : pandas, numpy — building and processing the datasets
+- Model saving    : joblib        — saves the trained model so the backend
+                                     can load it instantly
+
+THE DATA WE USED
+-------------------
+Two sources, combined:
+
+1. Synthetic behavioral data (1,200 fake candidates) — generated ourselves,
+   since no public dataset links "how someone answers questions" to "their
+   real skill level." Each fake candidate has realistic accuracy/timing/
+   hint-usage patterns for their assigned tier (Beginner through Expert).
+
+2. A real Kaggle dataset ("AI-Powered Resume Screening Dataset", 1,000
+   resumes) — we pulled two features from it: claimed years of experience,
+   and number of skills listed. These were randomly paired with the
+   synthetic behavioral rows to add resume-based signals into training.
+
+Important honesty point for the report: the resume rows and behavioral
+rows come from two unrelated sources, paired randomly — there is no real
+dataset where the same person has both a real resume and a real
+assessment. This is a known, clearly stated limitation, not a hidden flaw.
+
+WHAT'S SIMPLIFIED VS. A "REAL" PRODUCTION VERSION
+----------------------------------------------------
+- Code questions are graded by keyword matching, not by actually running
+  submitted code in a sandbox.
+- Written answers are scored the same way, not with a real NLP/semantic
+  model.
+- Sessions are stored in memory, not a database — restarting the server
+  clears them.
+
+These are intentional, documented shortcuts, with a prioritized list of
+what a "v2" would add:
+1. Real code execution sandbox (Docker + pytest) instead of keyword matching
+2. Semantic answer scoring (Sentence-Transformers) instead of keyword matching
+3. Real collected training data (real people, independently verified skill
+   levels) instead of synthetic data
+4. Explainability via SHAP values, so predictions come with a "why"
+5. Persistent storage (PostgreSQL) instead of in-memory sessions
+
+PROJECT STRUCTURE
+--------------------
+skillsense-ai/
+├── README.md
+├── requirements.txt
+├── data/
+│   └── questions.json              (question bank, tagged by difficulty)
+├── backend/
+│   ├── main.py                     (FastAPI app: start / submit_answer / report)
+│   ├── adaptive_engine.py          (CAT logic + feature extraction)
+│   └── models/                     (trained model artifacts)
+├── ml/
+│   ├── data/
+│   │   └── AI_Resume_Screening.csv (Kaggle resume dataset)
+│   ├── generate_synthetic_data.py  (creates synthetic behavioral candidates)
+│   ├── merge_resume_data.py        (merges resume + behavioral data)
+│   └── train_model.py              (trains and saves the XGBoost model)
+└── frontend/
+    └── app.py                      (Streamlit UI)
+
+HOW TO RUN IT
+---------------
+1. python ml/generate_synthetic_data.py
+2. python ml/merge_resume_data.py
+3. python ml/train_model.py
+4. uvicorn backend.main:app --reload --port 8000     (terminal 1)
+5. streamlit run frontend/app.py                      (terminal 2)
